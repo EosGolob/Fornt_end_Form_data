@@ -114,7 +114,7 @@ const AdditionalDetailsComponent = ({
                   <div className="invalid-feedback">{errors.file}</div>
                 )}
               </div>
-              <div className="form-group">
+             {/**<div className="form-group">
                 <label className="form-label"><strong>Source</strong></label>
                 <select
                   className={`form-control ${
@@ -262,6 +262,59 @@ const AdditionalDetailsComponent = ({
                     {errors.subSource && (
                       <div className="invalid-feedback">{errors.subSource}</div>
                     )}
+                  </div>
+                )}
+              </div>
+              **/}
+               <div className="form-group">
+                <label className="form-label"><strong>Source</strong></label>
+                <select
+                  className={`form-control ${errors.source ? "is-invalid" : ""}`}
+                  value={formData.source}
+                  onChange={handleSourceChange}
+                >
+                  <option value="" disabled>Select Source</option>
+                  <option value="Vendor">Vendor</option>
+                  <option value="Emp Ref">Employee Reference</option>
+                  <option value="Social Media">Social Media</option>
+                  <option value="Portal">Portal</option>
+                  <option value="NGO">NGO</option>
+                  <option value="Campus">Campus</option>
+                  <option value="Walk In">Walk In</option>
+                </select>
+                {errors.source && <div className="invalid-feedback">{errors.source}</div>}
+
+                {formData.source === "Social Media" && (
+                  <div className="form-group">
+                    <label className="form-label"><strong>Social Media Platform</strong></label>
+                    <select
+                      className={`form-control ${errors.subSource ? "is-invalid" : ""}`}
+                      value={formData.subSource}
+                      onChange={handleSubSourceChange}
+                    >
+                      <option value="" disabled>Select Platform</option>
+                      <option value="Facebook">Facebook</option>
+                      <option value="Twitter">Twitter</option>
+                      <option value="LinkedIn">LinkedIn</option>
+                      <option value="Instagram">Instagram</option>
+                      <option value="Telegram">Telegram</option>
+                      <option value="Others">Others</option>
+                    </select>
+                    {errors.subSource && <div className="invalid-feedback">{errors.subSource}</div>}
+                  </div>
+                )}
+
+                {formData.source !== "Social Media" && formData.source && (
+                  <div className="form-group">
+                    <label className="form-label"><strong>Sub Source</strong></label>
+                    <input
+                      type="text"
+                      placeholder={`Enter ${formData.source} Details`}
+                      className={`form-control ${errors.subSource ? "is-invalid" : ""}`}
+                      value={formData.subSource}
+                      onChange={handleSubSourceChange}
+                    />
+                    {errors.subSource && <div className="invalid-feedback">{errors.subSource}</div>}
                   </div>
                 )}
               </div>

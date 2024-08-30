@@ -52,36 +52,9 @@ const EmployeeCreatePageComponent = () => {
   });
   const [currentPage, setCurrentPage] = useState(1);
 
-  // const handleChange = (field, value) => {
-  //   setFormData((prevFormData) => ({
-  //     ...prevFormData,
-  //     [field]: value,
-  //   }));
-  //   if (!value.trim()) {
-  //     setErrors((prevErrors) => ({
-  //       ...prevErrors,
-  //       [field]: `${field} is required`,
-  //     }));
-  //   }else{
-  //   setErrors((prevErrors) => ({
-  //     ...prevErrors,
-  //     [field]: "",
-  //   }));
-  // }
-  // };
+ 
   const handleChange = (field, value) => {
-    // Validate the field and set error message
-    // if (!value) {
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     [field]: `${field} is required`,
-    //   }));
-    // } else {
-    //   setErrors((prevErrors) => ({
-    //     ...prevErrors,
-    //     [field]: "",
-    //   }));
-    // }
+ 
     let errorMessage = "";
     switch (field) {
       case "email":
@@ -118,9 +91,53 @@ const EmployeeCreatePageComponent = () => {
     setCurrentPage((prevPage) => prevPage - 1);
   };
 
- 
+  const validateRequiredFields = () => {
+    const newErrors = {};
+    const requiredFields = [
+      'fullName', 'email', 'jobProfile', 'qualification', 'mobileNo',
+      'permanentAddress', 'currentAddress', 'gender', 'previousOrganisation',
+      'dob', 'maritalStatus', 'refferal', 'year', 'file', 'source', 'languages', 'experience', 'aadhaarNumber'
+    ];
+  
+    requiredFields.forEach(field => {
+      if (!formData[field] || (Array.isArray(formData[field]) && formData[field].length === 0)) {
+        newErrors[field] = 'This field is required';
+      }
+    });
+  
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+  // const validateRequiredFields = () => {
+  //   const newErrors = {};
+  //   const requiredFields = [
+  //     'fullName', 'email', 'jobProfile', 'qualification', 'mobileNo',
+  //     'permanentAddress', 'currentAddress', 'gender', 'previousOrganisation',
+  //     'dob', 'maritalStatus', 'refferal', 'year', 'file', 'source', 'language', 'experience', 'aadhaarNumber'
+  //   ];
+  
+  //   const filledFields = requiredFields.filter(field => formData[field]);
+  
+  //   if (filledFields.length === 1) {
+  //     // Show a single error if only one field is filled and the rest are empty
+  //     newErrors.general = 'Please fill all required fields';
+  //   } else {
+  //     requiredFields.forEach(field => {
+  //       if (!formData[field] || (Array.isArray(formData[field]) && formData[field].length === 0)) {
+  //         newErrors[field] = 'This field is required';
+  //       }
+  //     });
+  //   }
+  
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+  
  
   const saveEmployee = () => {
+    if (!validateRequiredFields()) {
+      return;
+    }
     const formDataToSend = new FormData();
     formDataToSend.append("employee", new Blob([JSON.stringify(formData)], { type: "application/json" }));
     formDataToSend.append("image", formData.file);
@@ -132,9 +149,7 @@ const EmployeeCreatePageComponent = () => {
     })
     .then((response) => {
       console.log(response.data);
-      // Show success toast
       toast.success("Employee created successfully!");
-      // Reset the form
       setFormData({
         fullName: "",
         email: "",
@@ -163,32 +178,6 @@ const EmployeeCreatePageComponent = () => {
       const responseData = errors.response.data;
       if (responseData && responseData.message) {
         const errorMessage = responseData.message;
-      //   if (errorMessage.includes("Email") && errorMessage.includes("Aadhaar")) {
-      //     setErrors((prevErrors) => ({
-      //       ...prevErrors,
-      //       email: "Email is already registered",
-      //       aadhaarNumber: "Aadhaar number is already registered",
-      //     }));
-      //     toast.error("Failed to create employee. Email and Aadhaar number are already registered.");
-      //   } else if (errorMessage.includes("Email")) {
-      //     setErrors((prevErrors) => ({
-      //       ...prevErrors,
-      //       email: "Email is already registered",
-            
-      //     }));
-
-      //     toast.error("Email is already registered.");
-      //   } else if (errorMessage.includes("aadhaarNumber")) {
-      //     setErrors((prevErrors) => ({
-      //       ...prevErrors,
-      //       aadhaarNumber: "Aadhaar number is already registered",
-      //     }));
-      //     toast.error("Aadhaar number is already registered.");
-      //   } else {
-      //     // Handle other errors if needed
-      //     toast.error("Failed to create employee. Please try again.");
-      //   }
-      // }
       const updatedErrors = { ...errors };
 
       if (errorMessage.includes("Email") && errorMessage.includes("Aadhaar")) {
