@@ -5,7 +5,7 @@ const NotificationComponent = () => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8082/api/notifications')
+    axios.get('http://localhost:9090/api/notifications')
       .then(response => {
         setNotifications(response.data);
       })
@@ -14,7 +14,7 @@ const NotificationComponent = () => {
       });
 
     // WebSocket connection for real-time notifications
-    const ws = new WebSocket("ws://localhost:8082/notifications");
+    const ws = new WebSocket("ws://localhost:9090/notifications");
 
     ws.onmessage = (event) => {
       const message = event.data;

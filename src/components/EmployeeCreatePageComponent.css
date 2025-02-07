@@ -3,7 +3,9 @@
   font-family: Cambria;
   
 }
-
+.form-group {
+  margin-bottom: 20px; 
+}
 .button-container {
     display: flex;
     justify-content: center;
@@ -23,7 +25,25 @@
     background-color: #f0f0f0;
   }
 
-  .form-control{
-    /* opacity: 40%; */
-    /* color: black; */
+ 
+  .label-error-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .label-error-container label {
+    margin-right: 10px;
+  }
+  
+  .label-error-container .text-danger {
+    font-size: 12px;
+    color: red;
+  }
+
+  .checkbox-container {
+    max-height: 200px; /* Set a maximum height */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    padding: 10px; /* Optional: Add some padding */
+    margin-top: 10px; /* Optional: Add some margin */
   }
