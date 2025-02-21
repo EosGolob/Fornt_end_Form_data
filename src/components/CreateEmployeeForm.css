@@ -1,0 +1,92 @@
+/* Container for the form */
+.create-employee-form {
+    max-width: 600px; /* Limit the width of the form */
+    margin: 0 auto; /* Center the form */
+    padding: 20px; /* Add padding around the form */
+    border: 1px solid #ccc; /* Light border around the form */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Heading style */
+.create-employee-form h2 {
+    text-align: center; /* Center the heading */
+    color: #333; /* Darker text color */
+}
+
+/* Style for labels */
+.create-employee-form label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 5px; /* Space between label and input */
+    font-weight: bold; /* Bold labels */
+}
+
+/* Input fields */
+.create-employee-form input[type="text"],
+.create-employee-form input[type="date"],
+.create-employee-form select {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside the input */
+    margin-bottom: 15px; /* Space below each input */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+/* Radio buttons container */
+.create-employee-form div {
+    margin-bottom: 15px; /* Space below each section */
+}
+
+/* Error message styling */
+.create-employee-form .error {
+    color: red; /* Red color for error messages */
+    font-size: 0.9em; /* Slightly smaller font size */
+}
+
+/* Submit button styling */
+.create-employee-form button {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding for the button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1em; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+/* Button hover effect */
+.create-employee-form button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Style for the languages box specifically */
+.languages-box {
+    border: 1px solid #ccc;  /* Border around the box */
+    padding: 10px;  /* Padding inside the box */
+    width: 552px;  /* Set a fixed width */
+    max-height: 150px;  /* Max height to limit the box size */
+    overflow-y: auto;  /* Enable vertical scrolling if content overflows */
+    background-color: #f9f9f9;  /* Light background color */
+    border-radius: 5px;  /* Slight rounding of corners */
+}
+
+/* Style the checkboxes */
+.languages-box input[type="checkbox"] {
+    margin-right: 10px;  /* Space between checkbox and label */
+}
+
+/* Style the label text */
+.languages-box label {
+    display: flex;  /* Use flexbox to align items */
+    align-items: center;  /* Vertically center the label text and checkbox */
+    margin-bottom: 8px;  /* Space between each label */
+}
+
+/* Optional: Style for error messages */
+.languages-box div[style="color: red"] {
+    font-size: 12px;  /* Smaller font size for errors */
+    margin-top: 10px;  /* Space between error and the language section */
+}
